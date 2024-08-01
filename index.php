@@ -1,3 +1,9 @@
+<?php
+$json = file_get_contents("./data.json");
+$data = json_decode($json, true);
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,7 +25,20 @@
         <button class="btn btn-primary">
           <i class="fa fa-sign-in"></i> Login</button>
       </div>
+      <div>
+        <button class="btn btn-primary">
+          <i class="fa fa-bell"></i>Notification</button>
+      </div>
+      <div>
+        <button class="btn btn-primary">
+          <i class="fa fa-id-card"></i>Card</button>
+      </div>
+      <div>
+        <button class="btn btn-primary">
+          <i class="fa fa-battery-half"></i>Battery</button>
+      </div>
     </div>
+    <div>
     <table class="table table-dark">
       <thead>
         <tr>
@@ -33,12 +52,29 @@
         </tr>
       </thead>
       <tbody>
+        <?php foreach($data as $element): ?>
+          <tr>
+            <td>
+              <img src="<?php echo $element["image"]["thumbnail"]?>"> </td>
+              <td><?php echo $element["name"]["english"]?> </td>
+              <td><?php echo strtoupper( $element["species"])?> </td>
+              <td><?php echo $element["description"]?> </td>
+              <td><?php echo $element["profile"]["weight"]?> </td>
+              <td><?php echo $element["profile"]["height"]?> </td>
+              <td><button type="button" class="btn btn-info">Collect</button> </td>
+            </tr>
+        
+            <?php endforeach; ?>
+
+              
+
 
         <!-- Write your code here -->
       </tbody>
     </table>
 
   </div>
+        </div>
   <!-- DNT MAKE ANY CHANGES ON THE CODE BELOW -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
